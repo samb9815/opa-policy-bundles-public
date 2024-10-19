@@ -2,4 +2,4 @@ package example
 
 import rego.v1
 
-default allow := false                              # unless otherwise defined, allow is false
+default allow := true                              # unless otherwise defined, allow is false
