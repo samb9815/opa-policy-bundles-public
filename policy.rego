@@ -2,7 +2,7 @@ package lightbulbs
 
 import rego.v1
 
-default allow = true
+default allow = false
 
 allow if {
     input.request.path == "/lightbulbs-opa/0"
