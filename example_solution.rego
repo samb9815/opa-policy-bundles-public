@@ -10,13 +10,14 @@ allow_model if {
 
 allow_model if {
   input.method == "PUT"
-  print("Input status: ", input.body_args.status)
-  print("Claims: ", claims)
   input.body_args.status == "on"
   
   some r in claims.role
   r == "lucifer"
+
   to_number(claims.age) >= 16
+
+  is_owner
 }
 
 allow_model if {
@@ -25,4 +26,10 @@ allow_model if {
   
   some r in claims.role
   r == "snuffer"
+}
+
+is_owner if {
+  not is_null(input.path[1])
+  owner := get_owner(input.path[1])
+  owner == input.headers.x-user-sub
 }
