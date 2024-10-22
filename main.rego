@@ -9,7 +9,7 @@ default allow = false
 
 allow if {
 	input.path[0] == "lightbulbs-opa"
-	jwt.is_valid
+	print("jwt.is_valid", jwt.is_valid)
 	print("JWT is valid")
 	allow_model
 	print("Access allowed by model solution")
