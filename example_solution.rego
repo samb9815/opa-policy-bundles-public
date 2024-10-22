@@ -14,7 +14,7 @@ allow_model if {
   input.body_args.status == "on"
   
   some r in claims.role
-  print("Claims:, claims)
+  print("Claims:", claims)
   r == "lucifer"
   print("Valid role")
 
