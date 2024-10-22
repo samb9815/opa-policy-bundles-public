@@ -10,6 +10,8 @@ allow_model if {
 
 allow_model if {
   input.method == "PUT"
+  print("Input status: ", input.body_args.status)
+  print("Claims: ", claims)
   input.body_args.status == "on"
   
   some r in claims.role
