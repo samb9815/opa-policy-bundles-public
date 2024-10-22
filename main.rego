@@ -52,7 +52,8 @@ get_lightbulb(id) := http.send({
 
 get_owner(id) := owner if {
 	lightbulb := get_lightbulb(id).body
-	owner := lightbulb.body
+	print(Lightbulb, lightbulb)
+	owner := lightbulb.owner
 	print("Owner: ", owner)
 }
 
