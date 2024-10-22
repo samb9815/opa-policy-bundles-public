@@ -2,7 +2,7 @@ package lightbulbs
 
 import rego.v1
 
-iss := "https://dev-mbt7ieoqd8u1bjwl.us.auth0.com/"
+iss := "https://dev-mbt7ieoqd8u1bjwl.us.auth0.com"
 aud := "https://kong.portasecura.com:8443"
 
 default allow = false
