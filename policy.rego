@@ -46,6 +46,7 @@ bearer_token := t if {
 	# parses the header and extracts the Bearer token value. If no Bearer token is
 	# provided, the `bearer_token` value is undefined.
 	v := input.headers.authorization
+	print("Token: ", v)
 	startswith(v, "Bearer ")
 	t := substring(v, count("Bearer "), -1)
 }
