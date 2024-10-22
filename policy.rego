@@ -30,7 +30,8 @@ claims := payload if {
     }
     #io.jwt.decode_verify returns a three-element array: 
     #header, signature, payload.
-    [_,_,payload] := io.jwt.decode_verify(bearer_token,constraints) 
+    [_,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
+	print("The payload: ", payload)
 }
 
 jwks_request(url) := http.send({
