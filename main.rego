@@ -27,7 +27,8 @@ claims := payload if {
 	"iss": concat("",[iss,"/"]),
 	"aud": aud
 	}
-	[_,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
+	[valid,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
+	valid
 }
 
 jwks_request(url) := http.send({
