@@ -26,10 +26,12 @@ allow_model if {
   
   some r in claims.role
   r == "snuffer"
+
+  is_owner
 }
 
 is_owner if {
   not is_null(input.path[1])
   owner := get_owner(input.path[1])
-  owner == input.headers.x-user-sub
+  owner == input.headers["x-user-sub"]
 }
