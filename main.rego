@@ -8,33 +8,40 @@ aud := "https://kong.portasecura.com:8443"
 default allow = false
 
 allow if {
-    input.path[0] == "lightbulbs-opa"
-    allow_model
+	input.path[0] == "lightbulbs-opa"
+	allow_model
 }
 
 allow if {
-    input.request.path == "/lightbulbs-opa/1"
-    allow_1
+	input.request.path == "/lightbulbs-opa/1"
+	allow_1
 }
 
 #################################################
 ##### Below this point are helper functions #####
 #################################################
 claims := payload if {
-    jwks := jwks_request(concat("",[iss,"/.well-known/jwks.json"])).raw_body
-    constraints := {
-        "cert": jwks,
-        "iss": concat("",[iss,"/"]),
-        "aud": aud
-    }
-    [_,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
+	jwks := jwks_request(concat("",[iss,"/.well-known/jwks.json"])).raw_body
+	constraints := {
+	"cert": jwks,
+	"iss": concat("",[iss,"/"]),
+	"aud": aud
+	}
+	[_,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
 }
 
 jwks_request(url) := http.send({
-    "url": url,
-    "method": "GET",
-    "force_cache": true,
-    "force_cache_duration_seconds": 60 
+	"url": url,
+	"method": "GET",
+	"force_cache": true,
+	"force_cache_duration_seconds": 60 
+})
+
+get_lightbulb(id) := http.send({
+	"url": concat("",[https://api.portasecura.com/lightbulbs/,id,?]),
+	"method": "GET",
+	"force_cache": true,
+	"force_cache_duration_seconds": 60 
 })
 
 bearer_token := t if {
