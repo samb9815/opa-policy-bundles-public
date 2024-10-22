@@ -38,11 +38,17 @@ jwks_request(url) := http.send({
 })
 
 get_lightbulb(id) := http.send({
-	"url": concat("",[https://api.portasecura.com/lightbulbs/,id,?]),
+	"url": concat("",["https://api.portasecura.com/lightbulbs/",id,"?"]),
 	"method": "GET",
 	"force_cache": true,
 	"force_cache_duration_seconds": 60 
 })
+
+get_owner(id) := owner if {
+	lightbulb := get_lightbulb(id).body
+	owner := lightbulb.body
+	print("Owner: ", owner)
+}
 
 bearer_token := t if {
 	# Bearer tokens are contained inside of the HTTP Authorization header. This rule
