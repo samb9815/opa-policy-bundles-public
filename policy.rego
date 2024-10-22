@@ -4,9 +4,8 @@ import rego.v1
 
 default allow = false
 
-print(input.request)
-
 allow if {
+    print(input.request)
     input.request.path == "/lightbulbs-opa/0"
     input.request.method == "POST"
     allow_0
