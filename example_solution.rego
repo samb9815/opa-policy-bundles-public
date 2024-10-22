@@ -14,7 +14,6 @@ allow_model if {
   input.body_args.status == "on"
   
   some r in claims.role
-  print("Claims:", claims)
   r == "lucifer"
   print("Valid role")
 
@@ -40,5 +39,7 @@ allow_model if {
 is_owner if {
   not is_null(input.path[1])
   owner := get_owner(input.path[1])
+  print("Owner:", owner)
+  print("JWT Owner:", input.headers["x-user-sub"])
   owner == input.headers["x-user-sub"]
 }
