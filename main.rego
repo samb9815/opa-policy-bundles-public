@@ -9,7 +9,8 @@ default allow = false
 
 allow if {
 	input.path[0] == "lightbulbs-opa"
-	allow_model
+	jwt.is_valid
+	allow_model	
 }
 
 allow if {
@@ -20,7 +21,7 @@ allow if {
 #################################################
 ##### Below this point are helper functions #####
 #################################################
-claims := payload if {
+jwt := {"claims": payload, "is_valid": valid} if {
 	jwks := jwks_request(concat("",[iss,"/.well-known/jwks.json"])).raw_body
 	constraints := {
 	"cert": jwks,
@@ -30,6 +31,8 @@ claims := payload if {
 	[valid,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
 	valid
 }
+
+claims := jwt.claims
 
 jwks_request(url) := http.send({
 	"url": url,
