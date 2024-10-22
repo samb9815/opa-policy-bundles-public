@@ -8,7 +8,6 @@ aud := "https://kong.portasecura.com:8443"
 default allow = false
 
 allow if {
-	print("Path as expected: ", input.path[0] == "lightbulbs-opa")
     input.path[0] == "lightbulbs-opa"
     allow_model
 }
@@ -28,10 +27,7 @@ claims := payload if {
         "iss": concat("",[iss,"/"]),
         "aud": aud
     }
-    #io.jwt.decode_verify returns a three-element array: 
-    #header, signature, payload.
     [_,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
-	print("The payload: ", payload)
 }
 
 jwks_request(url) := http.send({
@@ -46,7 +42,6 @@ bearer_token := t if {
 	# parses the header and extracts the Bearer token value. If no Bearer token is
 	# provided, the `bearer_token` value is undefined.
 	v := input.headers.authorization
-	print("Token: ", v)
 	startswith(v, "Bearer ")
 	t := substring(v, count("Bearer "), -1)
 }
