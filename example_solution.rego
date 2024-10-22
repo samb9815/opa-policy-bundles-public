@@ -25,6 +25,7 @@ allow_model if {
 }
 
 allow_model if {
+  print("Determining ownership")
   input.method == "PUT"
   input.body_args.status == "off"
   
