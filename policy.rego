@@ -8,6 +8,7 @@ aud := "https://kong.portasecura.com:8443"
 default allow = false
 
 allow if {
+	print("Path as expected: ", input.path[0] == "lightbulbs-opa")
     input.path[0] == "lightbulbs-opa"
     allow_model
 }
