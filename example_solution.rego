@@ -25,7 +25,6 @@ allow_model if {
 }
 
 allow_model if {
-  print("Determining ownership")
   input.method == "PUT"
   input.body_args.status == "off"
   
@@ -38,7 +37,9 @@ allow_model if {
 }
 
 is_owner if {
+  print("Determining ownership")
   not is_null(input.path[1])
+  print("Retrieving owner")
   owner := get_owner(input.path[1])
   print("Owner:", owner)
   print("JWT Owner:", input.headers["x-user-sub"])
