@@ -1,5 +1,7 @@
 package lightbulbs
 
+import rego.v1
+
 default allow_model = false
 
 allow_model if {
