@@ -20,10 +20,12 @@ allow if {
 
 default_policy if {
 	"policy", "default" in input.body_args
+	"policy", "default" in input.uri_args
 }
 
 default_policy if {
 	not input.body_args.policy
+	not input.uri_args.policy
 }
 
 allow if {
@@ -31,6 +33,9 @@ allow if {
 	print("The path is correct")
 
 	"policy", "michael" in input.body_args
+	print("Michael's policy is used")
+
+	"policy", "michael" in input.uri_args
 	print("Michael's policy is used")
 
 	jwt.is_valid #Defined in the helper function section below
@@ -48,6 +53,7 @@ allow if {
 allow if {
 	correct_path
 	"policy", "NAME" in input.body_args
+	"policy", "NAME" in input.uri_args
 	print("NAME's policy is used")
 	jwt.is_valid
 	allow_NAME #To be defined in your own rego-file
