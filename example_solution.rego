@@ -37,11 +37,8 @@ allow_model if {
 }
 
 is_owner if {
-  print("Determining ownership")
-  not is_null(input.path[1])
-  print("Retrieving owner")
-  owner := get_owner(input.path[1])
-  print("Owner:", owner)
-  print("JWT Owner:", input.headers["x-user-sub"])
+  id := input.path[1]
+  not is_null(id)
+  owner := get_owner(id)
   owner == input.headers["x-user-sub"]
 }
