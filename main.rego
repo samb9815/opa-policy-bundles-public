@@ -29,7 +29,7 @@ default_policy if {
 allow if {
 	correct_path
 	"policy", "Michael" in input.body_args
-	print("Michael's policy is used)
+	print("Michael's policy is used")
 	jwt.is_valid
 	allow_Michael
 }
