@@ -42,3 +42,8 @@ is_owner if {
   owner := get_owner(id)
   owner == input.headers["x-user-sub"]
 }
+
+is_owner if {
+  some r in claims.role
+  r == "lord-of-lumen"
+}
