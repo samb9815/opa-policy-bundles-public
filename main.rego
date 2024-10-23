@@ -19,34 +19,11 @@ allow if {
 }
 
 default_policy if {
-	"policy", "default" in input.body_args
-}
-
-default_policy if {
 	"policy", "default" in input.uri_args
 }
 
 default_policy if {
-	not input.body_args.policy
-}
-
-default_policy if {
 	not input.uri_args.policy
-}
-
-
-allow if {
-	correct_path #Defined in the helper function section below
-	print("The path is correct")
-
-	"policy", "michael" in input.body_args
-	print("Michael's policy is used")
-
-	jwt.is_valid #Defined in the helper function section below
-	print("The JWT is valid")
-
-	allow_michael #Defined in policy_michael.rego
-	print("Access is allowed per Michael's policy")
 }
 
 allow if {
@@ -68,13 +45,6 @@ allow if {
 #####     Copy the following piece of code       #####
 #####     Substitute NAME for your own name      #####
 ######################################################
-allow if {
-	correct_path
-	"policy", "NAME" in input.body_args
-	print("NAME's policy is used")
-	jwt.is_valid
-	allow_NAME #To be defined in your own rego-file
-}
 allow if {
 	correct_path
 	"policy", "NAME" in input.uri_args
