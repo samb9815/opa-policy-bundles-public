@@ -88,11 +88,9 @@ get_owner(id) := owner if {
 	owner := lightbulb.owner
 }
 
-#Extracts the JWT/bearer token from the request's authorization header and removes the initial "Bearer " part
+#Extracts the JWT/bearer token from the request's authorization header and removes the initial "Bearer " part.
+#If no bearer token is provided, the `bearer_token` value is undefined.
 bearer_token := t if {
-	# Bearer tokens are contained inside of the HTTP Authorization header. This rule
-	# parses the header and extracts the Bearer token value. If no Bearer token is
-	# provided, the `bearer_token` value is undefined.
 	v := input.headers.authorization
 	startswith(v, "Bearer ")
 	t := substring(v, count("Bearer "), -1)
