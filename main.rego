@@ -35,6 +35,7 @@ allow if {
 }
 
 allow if {
+	correct_path
 	"policy", "NAME" in input.body_args
 	print("NAME's policy is used")
 	jwt.is_valid
