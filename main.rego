@@ -9,7 +9,6 @@ default allow = false
 
 allow if {
 	input.path[0] == "lightbulbs-opa"
-	print("jwt.is_valid", jwt.is_valid)
 	print("JWT is valid")
 	allow_model
 	print("Access allowed by model solution")
@@ -52,9 +51,7 @@ get_lightbulb(id) := http.send({
 
 get_owner(id) := owner if {
 	lightbulb := get_lightbulb(id).body
-	print("Lightbulb", lightbulb)
 	owner := lightbulb.owner
-	print("Owner: ", owner)
 }
 
 bearer_token := t if {
