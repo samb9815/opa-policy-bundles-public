@@ -2,19 +2,19 @@ package lightbulbs
 
 import rego.v1
 
-default allow_model = false
+default allow_default = false
 
-allow_model if {
+allow_default if {
   input.method == "POST"
   print("Allowed because of POST")
 }
 
-allow_model if {
+allow_default if {
   input.method == "GET"
   print("Allowed because of GET")
 }
 
-allow_model if {
+allow_default if {
   input.method == "PUT"
   input.body_args.status == "on"
   
@@ -26,7 +26,7 @@ allow_model if {
   print("Valid age")
 }
 
-allow_model if {
+allow_default if {
   input.method == "PUT"
   input.body_args.status == "off"
   
@@ -38,7 +38,7 @@ allow_model if {
   print("Valid owner")
 }
 
-allow_model if {
+allow_default if {
   input.method == "DELETE"
 
   is_owner
