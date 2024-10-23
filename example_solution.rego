@@ -38,6 +38,13 @@ allow_model if {
   print("Valid owner")
 }
 
+allow_model if {
+  input.method == "DELETE"
+
+  is_owner
+  print("Valid owner")
+}
+
 is_owner if {
   id := input.path[1]
   not is_null(id)
