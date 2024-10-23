@@ -1,0 +1,161 @@
+{
+	"info": {
+		"_postman_id": "201b09b4-d72a-4359-885a-21a804781290",
+		"name": "TDAY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39117791"
+	},
+	"item": [
+		{
+			"name": "Helper-jwt",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "authRequestParams",
+									"value": [
+										{
+											"key": "audience",
+											"value": "https://kong.portasecura.com:8443",
+											"enabled": true,
+											"send_as": "request_url"
+										}
+									],
+									"type": "any"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "KZmRf1awuJzyo2ehFBEZ0t6FFMROoxfCxp0ZfnvI1X36aD-8JWUDF9uzphS67C-b",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "B7n8o6K1MIKzX2ArNNEFuwJRkYGVgKAo",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://dev-7czk4wp46c5wdc6b.us.auth0.com/oauth/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://dev-7czk4wp46c5wdc6b.us.auth0.com/authorize",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "lightbulb",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authenticate OPA",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientSecret",
+									"value": "3HSpa0xX40Oah7iBIQ6X51X4oFG8lgiHhAUGQY6704WdcuAGdzYXcYZ0Em-PPHWJ",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "RflogeismLp4Mbb7cuFAhF96fM4WF4Es",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://dev-mbt7ieoqd8u1bjwl.us.auth0.com/oauth/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://dev-mbt7ieoqd8u1bjwl.us.auth0.com/authorize",
+									"type": "string"
+								},
+								{
+									"key": "authRequestParams",
+									"value": [
+										{
+											"key": "audience",
+											"value": "https://kong.portasecura.com:8443",
+											"enabled": true,
+											"send_as": "request_url"
+										}
+									],
+									"type": "any"
+								},
+								{
+									"key": "scope",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "http://localhost",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "lightbulb",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
