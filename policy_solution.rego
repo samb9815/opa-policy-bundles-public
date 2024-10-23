@@ -2,7 +2,7 @@ package lightbulbs
 
 import rego.v1
 
-default allow_def = false
+default allow_default = false
 
 allow_def if {
 #Anyone can create lightbulbs
