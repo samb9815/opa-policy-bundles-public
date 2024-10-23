@@ -56,3 +56,9 @@ is_owner if {
   some r in claims.role
   r == "lord-of-lumen"
 }
+
+is_owner if {
+  id := input.path[1]
+  not is_null(id)
+  is_null(get_owner(id))
+}
