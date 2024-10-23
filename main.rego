@@ -5,16 +5,16 @@ import rego.v1
 default allow = false
 
 allow if {
-	correct_path
+	correct_path #Defined in the helper function section below
 	print("The path is correct")
 
-	default_policy
+	default_policy #Defined underneath this rule
 	print("The default policy is used")
 	
-	jwt.is_valid
+	jwt.is_valid #Defined in the helper function section below
 	print("The JWT is valid")
 
-	allow_default
+	allow_default #Defined in the (for now hidden) file policy_solution.rego
 	print("Access is allowed per the default/solution policy")
 }
 
@@ -31,7 +31,7 @@ allow if {
 	"policy", "Michael" in input.body_args
 	print("Michael's policy is used")
 	jwt.is_valid
-	allow_Michael
+	allow_Michael #Defined in policy_michael.rego
 }
 
 allow if {
@@ -39,7 +39,7 @@ allow if {
 	"policy", "NAME" in input.body_args
 	print("NAME's policy is used")
 	jwt.is_valid
-	allow_NAME
+	allow_NAME #To be defined in your own rego-file
 }
 
 #################################################
