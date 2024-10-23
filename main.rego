@@ -31,7 +31,7 @@ allow if {
 	"policy", "Michael" in input.body_args
 	print("Michael's policy is used")
 	jwt.is_valid
-	allow_Michael #Defined in policy_michael.rego
+	allow_michael #Defined in policy_michael.rego
 }
 
 allow if {
