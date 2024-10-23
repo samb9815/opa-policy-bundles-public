@@ -19,9 +19,6 @@ allow_model if {
 
   to_number(claims.age) >= 16
   print("Valid age")
-
-  is_owner
-  print("Valid owner")
 }
 
 allow_model if {
