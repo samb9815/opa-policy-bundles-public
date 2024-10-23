@@ -8,6 +8,28 @@ allow if {
 	correct_path #Defined in the helper function section below
 	print("The path is correct")
 
+	default_policy #Defined underneath this rule
+	print("The default policy is used")
+
+	jwt.is_valid #Defined in the helper function section below
+	print("The JWT is valid")
+
+	allow_default #Defined in the (for now hidden) file policy_solution.rego
+	print("Access is allowed per the default/solution policy")
+}
+
+default_policy if {
+	"policy", "default" in input.body_args
+}
+
+default_policy if {
+	not input.body_args.policy
+}
+
+allow if {
+	correct_path #Defined in the helper function section below
+	print("The path is correct")
+
 	"policy", "michael" in input.body_args
 	print("Michael's policy is used")
 
@@ -47,32 +69,6 @@ allow if {
 
 
 
-
-######################################################
-##### The following piece of code is active via  #####
-##### a hidden file but is left here for clarity #####
-######################################################
-#allow if {
-#	correct_path #Defined in the helper function section below
-#	print("The path is correct")
-
-#	default_policy #Defined underneath this rule
-#	print("The default policy is used")
-	
-#	jwt.is_valid #Defined in the helper function section below
-#	print("The JWT is valid")
-
-#	allow_default #Defined in the (for now hidden) file policy_solution.rego
-#	print("Access is allowed per the default/solution policy")
-#}
-
-#default_policy if {
-#	"policy", "default" in input.body_args
-#}
-
-#default_policy if {
-#	not input.body_args.policy
-#}
 
 ######################################################
 #####   Below this point are helper functions    #####
