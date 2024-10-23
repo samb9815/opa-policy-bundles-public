@@ -2,21 +2,21 @@ package lightbulbs
 
 import rego.v1
 
-default allow_def = false
+default allow_default = false
 
-allow_def if {
+allow_default if {
 #Anyone can create lightbulbs
   input.method == "POST"
   print("Allowed because of POST")  
 }
 
-allow_def if {
+allow_default if {
 #Anyone can retrieve lightbulb information
   input.method == "GET"
   print("Allowed because of GET")
 }
 
-allow_def if {
+allow_default if {
 #Only lucifers older than 16 years can turn lightbulbs on
   input.method == "PUT"
   input.body_args.status == "on"
@@ -29,7 +29,7 @@ allow_def if {
   print("Valid age")
 }
 
-allow_def if {
+allow_default if {
 #Only snuffers can turn lightbulbs off and only their own
   input.method == "PUT"
   input.body_args.status == "off"
@@ -42,7 +42,7 @@ allow_def if {
   print("Valid owner")
 }
 
-allow_def if {
+allow_default if {
 #Only the owner (and lord-of-lumen) can delete a lightbulb
   input.method == "DELETE"
 
