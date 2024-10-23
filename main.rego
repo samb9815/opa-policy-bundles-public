@@ -2,26 +2,55 @@ package lightbulbs
 
 import rego.v1
 
-iss := "https://dev-mbt7ieoqd8u1bjwl.us.auth0.com"
-aud := "https://kong.portasecura.com:8443"
-
 default allow = false
 
 allow if {
-	input.path[0] == "lightbulbs-opa"
-	print("JWT is valid")
+	correct_path
+	print("The path is correct")
+
+	default_policy
+	print("The default policy is used")
+	
+	jwt.is_valid
+	print("The JWT is valid")
+
 	allow_model
-	print("Access allowed by model solution")
+	print("Access is allowed per the model solution policy")
+}
+
+default_policy if {
+	"policy", "default" in input.body_args
+}
+
+default_policy if {
+	not input.body_args.policy
 }
 
 allow if {
-	input.request.path == "/lightbulbs-opa/1"
-	allow_1
+	correct_path
+	"policy", "Michael" in input.body_args
+	print("Michael's policy is used)
+	jwt.is_valid
+	allow_Michael
+}
+
+allow if {
+	"policy", "NAME" in input.body_args
+	print("NAME's policy is used")
+	jwt.is_valid
+	allow_NAME
 }
 
 #################################################
 ##### Below this point are helper functions #####
 #################################################
+iss := "https://dev-mbt7ieoqd8u1bjwl.us.auth0.com"
+aud := "https://kong.portasecura.com:8443"
+
+correct_path if {
+	input.path[0] == "lightbulbs-opa"
+}
+
 jwt := {"claims": payload, "is_valid": valid} if {
 	jwks := jwks_request(concat("",[iss,"/.well-known/jwks.json"])).raw_body
 	constraints := {
@@ -30,7 +59,6 @@ jwt := {"claims": payload, "is_valid": valid} if {
 	"aud": aud
 	}
 	[valid,_,payload] := io.jwt.decode_verify(bearer_token,constraints)
-	valid
 }
 
 claims := jwt.claims
