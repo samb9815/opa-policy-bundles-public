@@ -10,6 +10,11 @@ allow_model if {
 }
 
 allow_model if {
+  input.method == "GET"
+  print("Allowed because of GET")
+}
+
+allow_model if {
   input.method == "PUT"
   input.body_args.status == "on"
   
