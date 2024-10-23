@@ -19,6 +19,6 @@ allow if {
 }
 
 allow_michael if {
-  input.method == "GET"
-  print("Allowed because of GET")
+  input.method == "POST"
+  print("Allowed because of POST")
 }
