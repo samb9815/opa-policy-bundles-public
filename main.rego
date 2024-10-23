@@ -52,8 +52,8 @@ correct_path if {
 	input.path[0] == "lightbulbs-opa"
 }
 
-#Decodes the JWT bearer token and verifies its signature
 jwt := {"claims": payload, "is_valid": valid} if {
+#Decodes the JWT bearer token and verifies its signature
 	jwks := jwks_request(concat("",[iss,"/.well-known/jwks.json"])).raw_body
 	constraints := {
 	"cert": jwks,
@@ -66,31 +66,31 @@ jwt := {"claims": payload, "is_valid": valid} if {
 #Extracts the claims that were contained in the JWT token and stores them in a dedicated variable
 claims := jwt.claims
 
-#Constructs an HTTP request, with the intent of fetching the JWKS (JSON Web Key Set) from Auth0 for JWT signature verification
 jwks_request(url) := http.send({
+#Constructs an HTTP request, with the intent of fetching the JWKS (JSON Web Key Set) from Auth0 for JWT signature verification
 	"url": url,
 	"method": "GET",
 	"force_cache": true,
 	"force_cache_duration_seconds": 60 
 })
 
-#Fetches information on a lightbulb at the API server, the Policy Information Point (PIP)
 get_lightbulb(id) := http.send({
+#Fetches information on a lightbulb at the API server, the Policy Information Point (PIP)
 	"url": concat("",["https://api.portasecura.com/lightbulbs/",id,"?"]),
 	"method": "GET",
 	"force_cache": true,
 	"force_cache_duration_seconds": 60 
 })
 
-#Extracts the owner out of all the lightbulb information
 get_owner(id) := owner if {
+#Extracts the owner out of all the lightbulb information
 	lightbulb := get_lightbulb(id).body
 	owner := lightbulb.owner
 }
 
+bearer_token := t if {
 #Extracts the JWT/bearer token from the request's authorization header and removes the initial "Bearer " part.
 #If no bearer token is provided, the `bearer_token` value is undefined.
-bearer_token := t if {
 	v := input.headers.authorization
 	startswith(v, "Bearer ")
 	t := substring(v, count("Bearer "), -1)
