@@ -14,8 +14,8 @@ allow if {
 	jwt.is_valid
 	print("The JWT is valid")
 
-	allow_model
-	print("Access is allowed per the model solution policy")
+	allow_default
+	print("Access is allowed per the default/solution policy")
 }
 
 default_policy if {
