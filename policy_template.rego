@@ -1,4 +1,4 @@
-package lightbulbs
+package lightbulbs2
 
 import rego.v1
 
