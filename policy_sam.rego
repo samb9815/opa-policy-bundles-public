@@ -2,7 +2,7 @@ package lightbulbs
 
 import rego.v1
 
-default allow_sam = false
+default allow_sam = true
 
 allow if {
 	correct_path
