@@ -2,21 +2,21 @@ package lightbulbs
 
 import rego.v1
 
-default allow_NAME = false
+default allow_NIELS = false
 
 ######################################################
 #####     Substitute NAME for your own name      #####
 ######################################################
 allow if {
 	correct_path
-	"policy", "NAME" in input.uri_args
-	print("NAME's policy is used")
+	"policy", "NIELS" in input.uri_args
+	print("NIELS's policy is used")
 	jwt.is_valid
-	allow_NAME #To be defined in your own rego-file
+	allow_NIELS #To be defined in your own rego-file
 }
 ######################################################
 
-allow_NAME if {
+allow_NIELS if {
   input.method == "POST"
   print("Allowed because of POST")
 }
