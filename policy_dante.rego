@@ -16,7 +16,7 @@ allow if {
 	print("The JWT is valid")
 
 	allow_dante #Defined in policy_michael.rego
-	print("Access is allowed per Michael's policy")
+	print("Access is allowed per Dante's policy")
 }
 
 allow_dante if {
